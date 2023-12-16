@@ -1,0 +1,13 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Item created</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <p th:text="|Item created with Id ${id}!|" />
+    <button onclick="window.location.href='/items-gui'">Create new Item</button>
+    <button onclick="window.location.href='/items-gui/list'">Go to list</button>
+</body>
+</html>

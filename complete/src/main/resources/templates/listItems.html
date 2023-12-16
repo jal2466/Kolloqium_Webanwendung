@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>Create Item</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h2>List Items</h2>
+    <table>
+        <tr>
+            <td>Name</td>
+            <td>Description</td>
+            <td>Material</td>
+            <td>Id</td>
+        </tr>
+        <tr th:each="item : ${items}">
+            <td th:text="${item.nomenclature}">Item Name</td>
+            <td th:text="${item.description}">Item Description</td>
+            <td th:text="${item.material}">Item Material</td>      
+            <td th:text="${item.id}"></td>  
+            
+            <td><button th:onclick="'window.location.href=\'/items-gui/' + ${item.id} + '/delete\''">delete</button></td>
+            <td><button th:onclick="'window.location.href=\'/items-gui/' + ${item.id} + '/show\''">show</button></td>
+            <td><button th:onclick="'window.location.href=\'/items-gui/' + ${item.id} + '/verknuepfen\''">verknüpfen</button></td>
+        
+        </tr>
+    </table>
+    <br/>
+    <button onclick="window.location.href='/items-gui'">Create new Item</button>
+</body>
+</html>

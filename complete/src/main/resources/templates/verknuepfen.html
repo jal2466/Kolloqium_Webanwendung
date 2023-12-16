@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Create Item</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Verknüpfen</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <h1>Verknüpfen</h1>
+    <h2> Welche Teile enthält deine Baugruppe?</h2>
+    <form method="post">
+    <fieldet>
+    <legend th:text="${'Bauteile für ' + item.nomenclature}"></legend>
+    <table>
+        <tr>
+            <td>
+                <select name="VerbautesItem"> 
+                    <option th:each="item : ${items}" th:value="${item.id}" th:text="${item.nomenclature}"></option>
+                </select>
+                <input type="input" th:id="Name" th:name="Name">
+                <label th:for="${item.id}" th:text="Name"></label>
+        </td>
+        </tr>
+        <tr>
+            <td>
+                <button type="submit" name="Verknüpfen" value="Verknüpfen">Verknüpfen</button>
+                <button type="submit" name="Fertig" value="Fertig">Fertig</button>
+            </td>
+    </table>
+    </fieldet>
+    </form>
+
+    <h3>Produktstruktur:</h3>
+    <div class="tree">
+        <div th:fragment="treeviewItem(item)">
+            <span th:text="${item.nomenclature}">Item</span>
+            <ul th:if="${item.getUses().size() > 0}">            
+                <li th:each="child : ${item.getUses()}">
+                    <i><span th:text="${child.name}">ItemInstance</span></i>                                
+                    <div th:replace="this :: treeviewItem(${child.represents})"></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+</body>
+</html>
